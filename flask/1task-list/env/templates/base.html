@@ -6,12 +6,20 @@
     <title>{% block title %}{% endblock %} - My Webpage</title>
     {% endblock %}
   </head>
+
   <body>
-    <div id="content">{% block content %}{% endblock %}</div>
+
+    <div id="content">
+        <p></p>
+        {% block content %}{% endblock %}
+ 
+    </div>
+
     <div id="footer">
       {% block footer %}
-      &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
+      &copy; Copyright 2010 by <a href="http://domain.invalid/">me</a>.
       {% endblock %}
     </div>
+
   </body>
 </html>

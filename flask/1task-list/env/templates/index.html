@@ -1,11 +1,36 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Task master{% endblock %}
 
 {% block content %}
-  <h1>Template</h1>
+<div>
+    <h1>Task Master xl</h1>
+    <table class="table">
+        <tr class="row">
+            <th>Task</th>
+            <th>Added</th>
+            <th>Action</th>
+        </tr>
+        {% for task in tasks %}
+        <tr class="row">
+            <td class="data">{{ task.content }}</td>
+            <td class="data">{{ task.date_created.date() }}</td>
+            <td class="data">
+                <a href="">Delete</a>
+                <br>
+                <a href="">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Add Task">
+    </form>
+</div>
+
 
 
   <p class="important">Welcome to my awesome homepage.</p>
-  <p>hope you are learning a lot</p>
+  <p>hope you are learnin</p>
 {% endblock %}
