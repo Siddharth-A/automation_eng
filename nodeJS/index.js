@@ -10,9 +10,15 @@
 
 // learn JS one liners since code is downloaded b4 website, it needs to be compact
 
+// postman
+    // you can use postman to test the get/post cmds: http://localhost:3000/v2/movies/2
+
 const express = require("express");
 const app = express();
 const port = 3000;
+
+const db = require("./db");
+// console.log(db)
 
 const list = [
     {title:"title 1", description:"description1"}, 
@@ -57,6 +63,27 @@ app.get("/movies/:index/:id", (req,res) => {
     console.log(req.params);
     res.send(list[index]);
 });
+
+// database get routes
+app.get("/v2/movies", (req,res) => {
+    const query1 = `SELECT * FROM new_schema.movies;`;
+    db.query(query1, (error, results) => {
+        if (error) {
+          return console.error(error.message);
+        }
+        res.send(results);
+    });
+});
+
+app.get("/v2/movies/:index", (req, res) => {
+    const { index } = req.params;
+    // const query2 = `SELECT * FROM new_schema.movies where idmovies=${index}` this works but prone to SQL injection attacks
+    const query2 = `SELECT * FROM new_schema.movies where idmovies = (?)` //(?) is an "SQL operator" to escape user input and sql injects
+    db.query(query2, index, (error, results) => {
+        res.send(results);
+    });
+});
+
 
 // ###########################################
 
