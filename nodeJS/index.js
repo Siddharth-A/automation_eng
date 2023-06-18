@@ -14,7 +14,9 @@
     // you can use postman to test the get/post cmds: http://localhost:3000/v2/movies/2
 
 const express = require("express");
+
 const app = express();
+app.use(express.urlencoded({ extended: false })); //to read body data and parse into db
 const port = 3000;
 
 const db = require("./db");
@@ -30,6 +32,8 @@ const list = [
 
 // ###########################################
 // GET REQUESTS
+// ###########################################
+
 app.get("/", (req,res) => {
     res.send("no hello");
 });
@@ -86,14 +90,34 @@ app.get("/v2/movies/:index", (req, res) => {
 
 
 // ###########################################
-
-// ###########################################
 // POST REQUESTS
+// ###########################################
 
 app.post("/movies", (req,res) => {
     const movie_obj = {title: "title 6", description: "description 6"};
     list.push(movie_obj);
     res.send(list);
+})
+
+// database post routes
+// INSERT INTO `new_schema`.`movies` (`idmovies`, `title`, `desc`) VALUES ('5', 't5', 'd5');
+app.post("/v2/movies", (req,res) => {
+    const query = "INSERT INTO `new_schema`.`movies` (`title`, `desc`) VALUES ('t7', 'd7');"
+    db.query(query, (error, results) => {
+        res.send(results)
+    })
+})
+
+// dynamic data from body into database post route
+app.post("/v3/movies", (req,res) => {
+    const {title,desc} = req.body;
+    const query = "INSERT INTO `new_schema`.`movies` (`title`, `desc`) VALUES (?, ?);"
+    db.query(query, [title, desc], (errors,results) => {
+        if(errors)
+            console.log(errors)
+        res.send(results)
+    })
+
 })
 
 // ###########################################
