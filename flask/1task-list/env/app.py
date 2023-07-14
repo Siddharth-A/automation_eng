@@ -1,5 +1,7 @@
 ##basic cmds to setup
-#virtualenv env
+#virtualenv env (only once to create env dir)
+#cd env
+#source bin/activate
 #pip3 install flask flask-sqlalchemy
 #python3 app.py
 #go to link
