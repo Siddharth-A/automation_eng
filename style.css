@@ -1,0 +1,32 @@
+/* Custom styles */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section styles */
+.hero {
+    background-image: url('path-to-your-image.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+/* Navbar styles */
+.navbar {
+    padding: 1rem;
+}
+
+/* About and Contact Section styles */
+section {
+    padding: 3rem 0;
+}
+
+/* Footer styles */
+footer {
+    padding: 1rem 0;
+}
