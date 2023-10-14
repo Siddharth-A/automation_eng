@@ -16,4 +16,11 @@ router.post("/", async (req, res) => {
     res.json(post);
 });
 
+// 9.3
+router.get('/byid/:id', async (req, res) => {
+    const id = req.params.id;
+    const post = await Posts.findByPk(id);
+    res.json(post);
+})
+
 module.exports = router

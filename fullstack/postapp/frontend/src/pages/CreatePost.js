@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // 8. Form validation
 // npm install formik for form submission
@@ -11,6 +12,9 @@ import axios from "axios";
 // 8.2 connect to the backend and submit posts
 
 function CreatePost() {
+
+  let navigate = useNavigate();
+
   // 8.1
   const initialValues = {
     title: "",
@@ -23,6 +27,7 @@ function CreatePost() {
     // 8.2
     axios.post("http://localhost:3001/posts", data).then((response) =>{
         console.log("post submitted to database");
+        navigate("/");
     });
     console.log(data);
   };
