@@ -27,9 +27,19 @@
     // 4.2 add POST code to routes/posts.js
     // 4.3 connect GET&POST routes/posts.js to index.js
 
+// 5. whitelist and connect to frontend
+    // npm install cors
+    // 5.1 add code to white list and connect FE
+
 // 2. basic bare minimum setup
 const express = require('express')
 const app = express()
+
+// 5.1 add code to white list and connect FE
+const cors = require('cors');
+app.use(cors());
+
+
 
 app.listen(3001, () => {
     console.log("TEST: server running on port 3001")
