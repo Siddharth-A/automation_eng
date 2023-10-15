@@ -16,7 +16,7 @@
     // sequelize init
     // this will create a bunch of files and dirs
     // create new file under models/ for whatever table you want to create
-    // 3.1 define the table within this file along with the columns you want it to have (function postsinit)
+    // 3.1 define the table within models/posts along with the columns you want it to have (function postsinit)
     // 3.2 setup config/config.json development database info
     // 3.3 import db into index.js
 
@@ -48,7 +48,7 @@ app.listen(3001, () => {
 // 3.3 import db into index.js. sequelize.sync creates the table in db if not created
 const db = require("./models")
 db.sequelize.sync().then(() =>{
-    console.log("initialize posts table in DB")
+    console.log("initialize all tables in DB")
 });
 
 // 4.4 connect GET routes/posts.js to index.js
@@ -56,6 +56,9 @@ app.use(express.json()); //allow for post requests to use body
 
 const postRouter = require('./routes/posts')
 app.use("/posts", postRouter)
+// 10.4
+const commentRouter = require('./routes/comments')
+app.use("/comments", commentRouter)
 
 // // 4.4 connect POST routes/posts.js to index.js
 // const postRouter = require('./routes/posts')

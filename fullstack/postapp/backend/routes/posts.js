@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     res.json(post);
 });
 
-// 9.3
+// 9.3 Add route to display a single post
 router.get('/byid/:id', async (req, res) => {
     const id = req.params.id;
     const post = await Posts.findByPk(id);

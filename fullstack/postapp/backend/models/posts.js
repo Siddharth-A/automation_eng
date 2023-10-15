@@ -7,5 +7,13 @@ module.exports = (sequelize, DataTypes) => {
         username:{type:DataTypes.STRING, allowNull: false}
 
     });
+
+    // 10.2 associate comments to each post
+    Posts.associate = (models) => {
+        Posts.hasMany(models.Comments, {
+            onDelete: "cascade",
+        });
+    }
+
     return Posts;
 }
