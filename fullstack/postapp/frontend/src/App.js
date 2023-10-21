@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 // add basic bare minimum code
 // go to front-end and type npx create-react-app .
@@ -29,6 +31,9 @@ import Post from "./pages/Post";
 // formik             form creation
 // yup                form validation 
 
+// 12.6 create login page in front-end
+// 12.7 create signup page in front end
+// 12.8 create link for login and registering
 
 function App() {
   return (
@@ -37,11 +42,15 @@ function App() {
         <div className="navbar">
           <Link to="/">Home</Link>
           <Link to="/createpost">Create A Post</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
         </div>
         <Routes>
           <Route path="/" exact Component={Home} />
           <Route path="/createpost" exact Component={CreatePost} />
           <Route path="/post/:id" exact Component={Post} />
+          <Route path="/login" exact Component={Login} />
+          <Route path="/signup" exact Component={Signup} />
         </Routes>
       </Router>
     </div>

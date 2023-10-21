@@ -59,6 +59,9 @@ app.use("/posts", postRouter)
 // 10.4
 const commentRouter = require('./routes/comments')
 app.use("/comments", commentRouter)
+// 12.2
+const UserRouter = require('./routes/users')
+app.use("/auth", UserRouter)
 
 // // 4.4 connect POST routes/posts.js to index.js
 // const postRouter = require('./routes/posts')
