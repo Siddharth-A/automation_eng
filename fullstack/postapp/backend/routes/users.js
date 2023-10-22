@@ -5,11 +5,18 @@
 // 12.5 add route to login
 // next point in front end
 
+// 13 JWT authentication
+// npm install jsonwebtoken
+// 13.1 generate web token
+// 13.2 save web token in local storage session (vulnerable to XSS attack)
+// 13.3 create backend/middlewares => verify we want to proceed with request before acc proceeding
+
 const { application } = require("express");
 const express = require("express");
 const router = express.Router();
 const { Users } = require("../models");
 const bcrypt = require("bcrypt");
+const { sign } = require('jsonwebtoken');
 
 // 12.3 add route to post username in DB
 router.post("/", async (req, res) => {
@@ -37,8 +44,10 @@ router.post("/login", async (req, res) => {
     return;
   }
 
+//   13.1
   if (user && pwmatch) {
-    res.json(`Welcome back ${username} !`);
+    const accessToken = sign({username: user.username, id: user.id}, "importantsecret");
+    res.json(accessToken);//send to front-end
     return;
   }
 });

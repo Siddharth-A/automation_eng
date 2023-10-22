@@ -41,13 +41,23 @@ function Post() {
       .post("http://localhost:3001/comments", {
         commentbody: newcomment,
         PostId: id,
+      }, 
+      // 13.4.1
+      {
+        headers: {accessToken: sessionStorage.getItem("accessToken")}
       })
       .then((response) => {
-        console.log("comment submitted to database");
-        // 11.4 (...comments is called array destructuring)
-        const commenttoadd = { commentbody: newcomment };
-        setcomments([...comments, commenttoadd]);
-        setnewcomment("")
+        // 13.6
+        if (response.data.error){
+          console.log(response.data.error);
+        }
+        else{
+          console.log("comment submitted to database");
+          // 11.4 (...comments is called array destructuring)
+          const commenttoadd = { commentbody: newcomment };
+          setcomments([...comments, commenttoadd]);
+          setnewcomment("")
+        }
       });
   };
 
